@@ -10,7 +10,7 @@ namespace Lesson02
         // Composition is a "has-a" relationship between objects
         // Main object contains other objects that wouldn't do much on their own
         // A car has for wheels, represented by an array of size 4
-        public Wheel[4] wheels;
+        public Wheel[] wheels;
         // A car has only one engine
         public Engine engine;
 
