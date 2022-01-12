@@ -13,6 +13,11 @@ namespace Lesson05
 
             // accessing the public interface
             var msg = joe.GoToDestination("Airport");
+            joe.GoToDestination(null);
+            joe.GoToDestination(2132321.ToString());
+            joe.GoToDestination("");
+            joe.GoToDestination(String.Empty);
+
             Console.WriteLine(msg);
 
             Console.ReadLine();

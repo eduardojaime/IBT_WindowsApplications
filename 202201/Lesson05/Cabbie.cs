@@ -19,7 +19,7 @@ namespace Lesson05
         // private attributes (encapsulation)
         private string _Name; // Best practice > use underscore to indicate that a field is private
         // Composition > a driver has a cab
-        private string SIN;
+        private string SIN; // Social Insurance Number > Canada, SSN > US
         private Cab _Cab;
 
         // Constructors
@@ -46,24 +46,53 @@ namespace Lesson05
         // public interface > methods that can be accessed from outside the class
         public string GoToDestination(string destination)
         {
-            Console.WriteLine("Starting the trip");
+            try
+            {
+                // be ready for trouble
+                int number = 0;
+                bool isNumber = int.TryParse(destination, out number);
+                if (String.IsNullOrEmpty(destination) || isNumber)
+                    return "Sorry, could you repeat that?";
 
-            // some processing
-            // might include calling private implementation methods
-            TurnRight();
-            GoStraigth();
-            GoStraigth();
-            GoStraigth();
-            TurnRight();
-            GoStraigth();
-            GoStraigth();
-            GoStraigth();
-            GoStraigth();
-            TurnLeft();
+                Console.WriteLine("Starting the trip");
 
-            Console.WriteLine("Ending the trip");
+                // some processing
+                // might include calling private implementation methods
+                TurnRight();
+                GoStraigth();
+                GoStraigth();
+                GoStraigth();
+                TurnRight();
+                GoStraigth();
+                GoStraigth();
+                GoStraigth();
+                GoStraigth();
+                TurnLeft();
 
-            return "We have arrived!";
+                Console.WriteLine("Ending the trip");
+
+                return "We have arrived!";
+            }
+            catch (Exception ex)
+            {
+                return "Sorry! can't go there! " + ex.Message;
+            }
+        }
+
+        // abstract out (away) non-portable code
+        public string HandleCash(decimal amount)
+        {
+            // code that writes to the db moved to its own class
+            var helper = new MongoDbHelper();
+            helper.SendToDatabase(amount);
+
+
+            return "Thank you!";
+        }
+
+        public string HandleCreditCard(string amount)
+        {
+            return "Thank you!";
         }
 
         // private implementation methods
