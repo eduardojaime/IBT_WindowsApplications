@@ -70,7 +70,7 @@ namespace TestShop
         };
 
         public override string[] getInventory() {
-
+            // connects to MongoDB
             return foodOfferings;
 
         }
@@ -106,14 +106,14 @@ namespace TestShop
         };
 
         public override string[]  getInventory() {
-
+            // Connects to SQL Server
             return menuItems;
 
         }
 
         public override void  buyInventory(string item) {
 
-            Console.WriteLine(string.format("\nYou have just purchased {0}.", item);
+            Console.WriteLine(string.format("\nYou have just purchased {0}.", item));
 
         }
 

@@ -1,15 +1,20 @@
 class Mammal {
-
     public void eat () {System.out.println("I am Eating");};
-
 }
+
 interface IWalkable {
-
-        public void walk();
-
+    public void walk();
 }
-// Implement Interface directly > NO dependency injection
-class Dog extends Mammal implements IWalkable{
+
+class Walkable implements IWalkable
+{
+    public void walk() {
+        system.println("Look! I'm walking!");
+    }
+}
+
+// Using dependency injection
+class Dog extends Mammal {
 
    Walkable walker;
 
@@ -17,23 +22,24 @@ class Dog extends Mammal implements IWalkable{
    {
        this.walker = walker;
    }
-
    public void setWalker (Walkable w) {   
         this.walker=w; 
    }
-    // method implemented
-   public void walk () {System.out.println("I am Walking");};
-
 }
-class Cat extends Mammal implements IWalkable
+
+class Cat extends Mammal
 {
-    public Cat()
+    Walker walker;
+
+    public Cat(Walker walker)
     {
-
+        this.walker = walker;
     }
-
-    public void walk () {System.out.println("I am Walking");};
+    public void setWalker(Walkable w) {
+        this.walker = w;
+    }
 }
+
 public class TestMammal {
     public static void main(String args[]) {
 
@@ -48,7 +54,7 @@ public class TestMammal {
         fido.eat();
         fido.walker.walk();
 
-        Dog anotherDog = new Dog(walker)
-        fido.walker.walk();
+        Cat cat = new Cat(walker)
+        cat.walker.walk();
     }
 }
